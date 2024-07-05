@@ -29,7 +29,6 @@ task('deploy', [
     'deploy:prepare',
     'deploy:vendors',
     'database:updateschema',
-    'language:update',
     'cache:flush:typo3',
     'cache:warmup',
     'deploy:publish',
@@ -150,8 +149,6 @@ task('database:pull', function () {
 
     writeln('typo3 database:updateschema safe');
     runLocally('./vendor/bin/typo3 database:updateschema safe');
-    writeln('typo3 language:update');
-    runLocally('./vendor/bin/typo3 language:update');
     writeln('typo3 cache:flush');
     runLocally("./vendor/bin/typo3 cache:flush");
 
@@ -225,7 +222,6 @@ task('database:push', function () {
     run('rm {{release_or_current_path}}/local.sql');
 
     invoke('database:updateschema');
-    invoke('language:update');
     invoke('cache:flush:typo3');
     invoke('cache:warmup');
 
