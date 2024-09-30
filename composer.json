@@ -1,9 +1,8 @@
 {
     "name": "netwerk/deployer",
-    "description": "WEBprofil deployer tasks",
+    "description": "Deployer tasks",
     "type": "library",
     "require": {
-        "deployer/deployer": "^7.3"
+        "deployer/deployer": "^7.4"
     }
 }
-
