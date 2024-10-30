@@ -3,6 +3,6 @@
     "description": "Deployer tasks",
     "type": "library",
     "require": {
-        "deployer/deployer": "^7.4"
+        "deployer/deployer": "^7.5"
     }
 }
