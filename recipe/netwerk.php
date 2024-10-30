@@ -7,6 +7,8 @@ require 'recipe/typo3.php';
 add('recipes', ['netwerk']);
 
 set('typo3_webroot', 'public');
+set('keep_releases', '3');
+set('writable_mode', 'chmod');
 set('shared_files', ['.env']);
 
 // Hosts
