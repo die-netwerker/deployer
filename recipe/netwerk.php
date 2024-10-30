@@ -32,21 +32,21 @@ task('deploy', [
 
 task('language:update', function () {
     $path = test('[ -d {{release_path}} ]') ? get('release_path') : get('current_path');
-    run('cd ' . $path . ' && {{bin/php}} vendor/bin/typo3cms language:update');
+    run('cd ' . $path . ' && {{bin/php}} vendor/bin/typo3 language:update');
 });
 task('database:updateschema', function () {
     $path = test('[ -d {{release_path}} ]') ? get('release_path') : get('current_path');
-    run('cd ' . $path . ' && {{bin/php}} vendor/bin/typo3cms database:updateschema safe');
+    run('cd ' . $path . ' && {{bin/php}} vendor/bin/typo3 database:updateschema safe');
 });
 task('cache:flush', function () {
-    runLocally('./vendor/bin/typo3cms cache:flush');
+    runLocally('./vendor/bin/typo3 cache:flush');
 });
 task('cache:warmup', function () {
-    runLocally('./vendor/bin/typo3cms cache:warmup');
+    runLocally('./vendor/bin/typo3 cache:warmup');
 });
 task('database:pull', function () {
     writeln('Creating DB dump on remote server');
-    run("cd {{current_path}} && {{bin/php}} vendor/bin/typo3cms database:export -c Default -e 'cf_*' -e 'cache_*' -e '[bf]e_sessions' -e sys_log > dump.sql");
+    run("cd {{current_path}} && {{bin/php}} vendor/bin/typo3 database:export -c Default -e 'cf_*' -e 'cache_*' -e '[bf]e_sessions' -e sys_log > dump.sql");
 
     // get the dump from the server
     writeln('Downloading DB dump from remote server');
@@ -58,7 +58,7 @@ task('database:pull', function () {
 
     // import the dump to the local database
     writeln('Importing DB dump to local database');
-    runLocally('cat dump.sql | ./vendor/bin/typo3cms database:import');
+    runLocally('cat dump.sql | ./vendor/bin/typo3 database:import');
 
     // remove the dump from the local machine
     writeln('Removing DB dump from local machine');
